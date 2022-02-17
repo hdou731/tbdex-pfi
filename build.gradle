@@ -1,0 +1,49 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.squareup.wire:wire-gradle-plugin:4.0.1"
+    }
+}
+
+apply plugin: 'com.squareup.wire'
+apply plugin: 'java'
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'org.slf4j:slf4j-simple:1.7.31'
+    implementation 'io.javalin:javalin:4.3.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+    implementation 'com.squareup.wire:wire-gradle-plugin:4.0.1'
+    implementation 'com.squareup.wire:wire-grpc-client:4.0.1'
+    implementation 'com.squareup.wire:wire-moshi-adapter:4.0.1'
+    implementation 'org.json:json:20211205'
+    implementation 'com.google.protobuf:protobuf-java-util:3.19.4'
+    implementation 'com.google.inject:guice:5.0.1'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+wire {
+    protoLibrary = true
+
+    sourcePath {
+        srcDir("src/main/resources/")
+    }
+
+    java {
+        emitDeclaredOptions = true
+        emitAppliedOptions = true
+    }
+}
